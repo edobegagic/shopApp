@@ -18,7 +18,6 @@ const ProductDetailScreen = props => {
   const selectedProduct = useSelector(state =>
     state.products.availableProducts.find(prod => prod.id === productId)
   );
-
   const dispatch = useDispatch();
 
   return (
@@ -27,7 +26,7 @@ const ProductDetailScreen = props => {
       <View style={styles.actions}>
         <Button
           color={Colors.primary}
-          title="Add To Cart"
+          title='Add To Cart'
           onPress={() => {
             dispatch(cartActions.addToCart(selectedProduct));
           }}

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback
 } from 'react-native';
+
 import Colors from '../../constants/Colors';
 
 const ProductItem = props => {
@@ -29,12 +30,12 @@ const ProductItem = props => {
         <View style={styles.actions}>
           <Button
             color={Colors.primary}
-            title="View Details"
+            title='View Details'
             onPress={props.onViewDetail}
           />
           <Button
             color={Colors.primary}
-            title="Add to Cart"
+            title='Add to Cart'
             onPress={props.onAddtoCart}
           />
         </View>
