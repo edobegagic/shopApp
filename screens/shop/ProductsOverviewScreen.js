@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { useSelector } from 'react-redux';
+import { StyleSheet, FlatList, Platform } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductItems from '../../components/shop/ProductItem';
+import * as cartActions from '../../store/actions/cart';
+import HeaderButton from '../../components/UI/HeaderButton';
 
 const ProductOverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
+  const dispatch = useDispatch();
+
   return (
     <FlatList
       data={products}
@@ -21,23 +27,30 @@ const ProductOverviewScreen = props => {
               productTitle: itemData.item.title
             });
           }}
-          onAddtoCart={() => {}}
+          onAddtoCart={() => {
+            dispatch(cartActions.addToCart(itemData.item));
+          }}
         />
       )}
     />
   );
 };
 
-ProductOverviewScreen.navigationOptions = {
-  headerTitle: 'All Products'
+ProductOverviewScreen.navigationOptions = navData => {
+  return {
+    headerTitle: 'All Products',
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title='Cart'
+          iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+          onPress={() => {
+            navData.navigation.navigate('Cart');
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
 
 export default ProductOverviewScreen;

@@ -1,3 +1,4 @@
+import { ADD_TO_CART } from '../actions/cart';
 import CartItem from '../../models/cart-item';
 
 const initialState = {
@@ -12,15 +13,24 @@ export default (state = initialState, action) => {
       const prodPrice = addedProduct.price;
       const prodTitle = addedProduct.title;
 
-      if (items[addedProduct.id]) {
+      let updatedOrNewCartItem;
+
+      if (state.items[addedProduct.id]) {
         // already have the item in the cart
+        updatedOrNewCartItem = new CartItem(
+          state.items[addedProduct.id].quantity + 1,
+          prodPrice,
+          prodTitle,
+          state.items[addedProduct.id].sum + prodPrice
+        );
       } else {
-        const newCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice);
-        return {
-          ...state,
-          item: { ...state.items }
-        };
+        updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice);
       }
+      return {
+        ...state,
+        item: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
+        totalAmount: state.totalAmount + prodPrice
+      };
   }
   return state;
 };
