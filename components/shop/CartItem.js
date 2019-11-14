@@ -12,7 +12,7 @@ const CartItem = props => {
   return (
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
-        <Text style={styles.quantity}>{props.quantity}</Text>
+        <Text style={styles.quantity}>{props.quantity} </Text>
         <Text style={styles.mainText}>{props.title}</Text>
       </View>
       <View style={styles.itemData}>
@@ -32,10 +32,10 @@ const CartItem = props => {
 const styles = StyleSheet.create({
   cartItem: {
     padding: 10,
+    margin: 10,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 20
+    justifyContent: 'space-between'
   },
   itemData: {
     flexDirection: 'row',

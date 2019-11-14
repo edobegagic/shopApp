@@ -2,7 +2,6 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createTabNavigator } from 'react-navigation-tabs';
-import { HeaderButton } from 'react-navigation-header-buttons';
 
 import { Platform } from 'react-native';
 

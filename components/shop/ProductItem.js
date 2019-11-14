@@ -20,27 +20,33 @@ const ProductItem = props => {
   }
 
   return (
-    <TouchableCmp onPress={props.onViewDetail} useForeground>
-      <View style={styles.product}>
-        <Image source={{ uri: props.image }} style={styles.image} />
-        <View style={styles.details}>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.price}>${props.price.toFixed(2)}</Text>
-        </View>
-        <View style={styles.actions}>
-          <Button
-            color={Colors.primary}
-            title='View Details'
-            onPress={props.onViewDetail}
-          />
-          <Button
-            color={Colors.primary}
-            title='Add to Cart'
-            onPress={props.onAddtoCart}
-          />
-        </View>
+    <View style={styles.product}>
+      <View style={styles.touchable}>
+        <TouchableCmp onPress={props.onViewDetail} useForeground>
+          <View>
+            <View style={styles.imageContainer}>
+              <Image source={{ uri: props.image }} style={styles.image} />
+            </View>
+            <View style={styles.details}>
+              <Text style={styles.title}>{props.title}</Text>
+              <Text style={styles.price}>${props.price.toFixed(2)}</Text>
+            </View>
+            <View style={styles.actions}>
+              <Button
+                color={Colors.primary}
+                title='View Details'
+                onPress={props.onViewDetail}
+              />
+              <Button
+                color={Colors.primary}
+                title='Add to Cart'
+                onPress={props.onAddtoCart}
+              />
+            </View>
+          </View>
+        </TouchableCmp>
       </View>
-    </TouchableCmp>
+    </View>
   );
 };
 
@@ -54,11 +60,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#fff',
     height: 300,
-    margin: 20,
+    margin: 20
+  },
+  touchable: {
+    borderRadius: 10,
+    overflow: 'hidden'
+  },
+  imageContainer: {
+    width: '100%',
+    height: '60%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     overflow: 'hidden'
   },
   image: {
-    height: '60%',
+    height: '100%',
     width: '100%'
   },
   details: {

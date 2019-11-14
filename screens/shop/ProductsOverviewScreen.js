@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, FlatList, Platform } from 'react-native';
+import { FlatList, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import ProductItems from '../../components/shop/ProductItem';
+import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cart';
 import HeaderButton from '../../components/UI/HeaderButton';
 
@@ -17,7 +16,7 @@ const ProductOverviewScreen = props => {
       data={products}
       keyExtractor={item => item.id}
       renderItem={itemData => (
-        <ProductItems
+        <ProductItem
           title={itemData.item.title}
           price={itemData.item.price}
           image={itemData.item.imageUrl}
